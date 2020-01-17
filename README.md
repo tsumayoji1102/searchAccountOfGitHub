@@ -1,0 +1,2 @@
+# searchAccountOfGitHub
+GitHubアカウントを検索するアプリケーションです。
