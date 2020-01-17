@@ -8,12 +8,18 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class SearchResultViewController: UIViewController {
+    
+    @IBOutlet weak var resultNavi: UINavigationItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        resultNavi.title = "結果"
     }
+    
+    
 
 
 }
