@@ -10,9 +10,14 @@ import UIKit
 
 class SearchViewController: UITableViewController {
 
-
+    // @IBOutlet
     @IBOutlet weak var rootNavi: UINavigationItem!
     
+    // 検索結果
+    var accountList: Array<AccountData>!
+    
+    
+    // MARK: - ライフサイクル
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,15 +27,34 @@ class SearchViewController: UITableViewController {
         
     }
     
-    /*
+    
+    // MARK: - TableView系メソッド
+    
+    // ヘッダー内容
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
+        // 検索欄
+        let searchBar = UISearchBar.init()
+        return searchBar
     }
-    */
+    
+    // ヘッダーの高さ
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        return 40
+    }
+    
     
     // セル数
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        
+        if(accountList == nil || accountList.count == 0){
+            return 1
+            
+        }else{
+            return accountList.count
+        }
+        
     }
     
     
@@ -40,19 +64,39 @@ class SearchViewController: UITableViewController {
         // セル生成
         let cell = UITableViewCell.init()
         
-        // 実験台
-        let label = UILabel.init(frame: CGRect.init(x: 10, y: 10, width: 100, height:20))
-        label.text = "Hello World"
+        if(accountList == nil || accountList.count == 0){
+            
+            // 実験台
+            let label = UILabel.init(frame: CGRect.init(x: 10, y: 25, width: 100, height:20))
+            label.text = "Hello World"
+            
+            // 貼り付けて返す
+            cell.addSubview(label)
         
-        // 貼り付けて返す
-        cell.addSubview(label)
+        // 一旦Hello World
+        }else{
+            
+            let accountData = accountList[indexPath.row]
+            
+            //let image = UIImage
+            let nameLabel = UILabel.init(frame: CGRect.init(x: 60, y: 10, width: 100, height: 15))
+            nameLabel.text = accountData.getAccountName()
+            
+            let typeLabel = UILabel.init(frame: CGRect.init(x: 60, y: 25, width: 100, height: 15))
+            typeLabel.text = accountData.getAccountType()
+            
+            cell.addSubview(nameLabel)
+            cell.addSubview(typeLabel)
+            
+        }
+        
         return cell
     }
     
     
     // セルの高さ
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+        return 70
     }
     
     

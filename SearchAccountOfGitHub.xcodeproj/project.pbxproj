@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,11 @@
 		E7D8703623D1FC1F00B4C333 /* SearchAccountOfGitHubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D8703523D1FC1F00B4C333 /* SearchAccountOfGitHubUITests.swift */; };
 		E7DB90A323D201F200A61EDF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DB90A223D201F200A61EDF /* SearchViewController.swift */; };
 		E7DB90A523D205D800A61EDF /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = E7DB90A423D205D800A61EDF /* HelloWorld.png */; };
+		E7DE02F623D215E800B78423 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DE02F523D215E800B78423 /* Realm.framework */; };
+		E7DE02FA23D215EE00B78423 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DE02F923D215EE00B78423 /* RealmSwift.framework */; };
+		E7DE030023D2E36D00B78423 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DE02FF23D2E36D00B78423 /* AccountData.swift */; };
+		E7DE030223D3517900B78423 /* AccountDataDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DE030123D3517900B78423 /* AccountDataDao.swift */; };
+		E7DE030423D35A4200B78423 /* getSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DE030323D35A4200B78423 /* getSize.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +72,11 @@
 		E7D8703723D1FC1F00B4C333 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7DB90A223D201F200A61EDF /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		E7DB90A423D205D800A61EDF /* HelloWorld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HelloWorld.png; path = ../../../Desktop/HelloWorld.png; sourceTree = "<group>"; };
+		E7DE02F523D215E800B78423 /* Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7DE02F923D215EE00B78423 /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7DE02FF23D2E36D00B78423 /* AccountData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountData.swift; sourceTree = "<group>"; };
+		E7DE030123D3517900B78423 /* AccountDataDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDataDao.swift; sourceTree = "<group>"; };
+		E7DE030323D35A4200B78423 /* getSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getSize.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +84,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7DE02F623D215E800B78423 /* Realm.framework in Frameworks */,
 				0E0C87C2466EB3508B52390E /* Pods_SearchAccountOfGitHub.framework in Frameworks */,
+				E7DE02FA23D215EE00B78423 /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +112,8 @@
 		9BBD0B8D71786A5CD1C77F0D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E7DE02F923D215EE00B78423 /* RealmSwift.framework */,
+				E7DE02F523D215E800B78423 /* Realm.framework */,
 				87DECFE2FD6EAA2B4F97F0AC /* Pods_SearchAccountOfGitHub.framework */,
 				CDC4D58D0DAD9DB8D5759F74 /* Pods_SearchAccountOfGitHubTests.framework */,
 				8A786B474766F0671DDA935A /* Pods_SearchAccountOfGitHubUITests.framework */,
@@ -146,12 +160,13 @@
 			isa = PBXGroup;
 			children = (
 				E7DB90A423D205D800A61EDF /* HelloWorld.png */,
-				E7DB90A123D1FF5100A61EDF /* ViewModel */,
 				E7DB90A023D1FF4500A61EDF /* ViewController */,
+				E7DB90A123D1FF5100A61EDF /* ViewModel */,
 				E7DB909F23D1FF2E00A61EDF /* Model */,
 				E7D8701023D1FC1C00B4C333 /* AppDelegate.swift */,
 				E7D8701223D1FC1C00B4C333 /* SceneDelegate.swift */,
 				E7D8701623D1FC1C00B4C333 /* Main.storyboard */,
+				E7DE030323D35A4200B78423 /* getSize.swift */,
 				E7D8701C23D1FC1E00B4C333 /* Assets.xcassets */,
 				E7D8701E23D1FC1E00B4C333 /* LaunchScreen.storyboard */,
 				E7D8702123D1FC1E00B4C333 /* Info.plist */,
@@ -181,6 +196,7 @@
 		E7DB909F23D1FF2E00A61EDF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E7DE02FC23D2188400B78423 /* AccountData */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -199,6 +215,15 @@
 			children = (
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E7DE02FC23D2188400B78423 /* AccountData */ = {
+			isa = PBXGroup;
+			children = (
+				E7DE02FF23D2E36D00B78423 /* AccountData.swift */,
+				E7DE030123D3517900B78423 /* AccountDataDao.swift */,
+			);
+			path = AccountData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -426,7 +451,10 @@
 				E7DB90A323D201F200A61EDF /* SearchViewController.swift in Sources */,
 				E7D8701523D1FC1C00B4C333 /* SearchResultViewController.swift in Sources */,
 				E7D8701B23D1FC1C00B4C333 /* SearchAccountOfGitHub.xcdatamodeld in Sources */,
+				E7DE030423D35A4200B78423 /* getSize.swift in Sources */,
 				E7D8701123D1FC1C00B4C333 /* AppDelegate.swift in Sources */,
+				E7DE030223D3517900B78423 /* AccountDataDao.swift in Sources */,
+				E7DE030023D2E36D00B78423 /* AccountData.swift in Sources */,
 				E7D8701323D1FC1C00B4C333 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
