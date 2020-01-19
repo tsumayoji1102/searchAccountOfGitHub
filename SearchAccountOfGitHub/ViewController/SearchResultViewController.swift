@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import KRProgressHUD
 
 class SearchResultViewController: UIViewController {
     
@@ -34,7 +35,14 @@ class SearchResultViewController: UIViewController {
     }
     
     
-
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        KRProgressHUD.show()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        KRProgressHUD.dismiss()
+    }
+    
 }
 

@@ -21,11 +21,13 @@
 		E7D8703623D1FC1F00B4C333 /* SearchAccountOfGitHubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D8703523D1FC1F00B4C333 /* SearchAccountOfGitHubUITests.swift */; };
 		E7DB90A323D201F200A61EDF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DB90A223D201F200A61EDF /* SearchViewController.swift */; };
 		E7DB90A523D205D800A61EDF /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = E7DB90A423D205D800A61EDF /* HelloWorld.png */; };
-		E7DE02F623D215E800B78423 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DE02F523D215E800B78423 /* Realm.framework */; };
-		E7DE02FA23D215EE00B78423 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DE02F923D215EE00B78423 /* RealmSwift.framework */; };
 		E7DE030023D2E36D00B78423 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DE02FF23D2E36D00B78423 /* AccountData.swift */; };
 		E7DE030223D3517900B78423 /* AccountDataDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DE030123D3517900B78423 /* AccountDataDao.swift */; };
 		E7DE030423D35A4200B78423 /* getSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DE030323D35A4200B78423 /* getSize.swift */; };
+		E7EFAE7423D46B2E00838A18 /* KRProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EFAE7323D46B2E00838A18 /* KRProgressHUD.framework */; };
+		E7EFAE7823D46B3200838A18 /* KRActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EFAE7723D46B3200838A18 /* KRActivityIndicatorView.framework */; };
+		E7EFAE7B23D46B3900838A18 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EFAE7A23D46B3900838A18 /* SwiftyJSON.framework */; };
+		E7EFAE7E23D46B3E00838A18 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EFAE7D23D46B3E00838A18 /* Alamofire.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,10 @@
 		E7DE02FF23D2E36D00B78423 /* AccountData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountData.swift; sourceTree = "<group>"; };
 		E7DE030123D3517900B78423 /* AccountDataDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDataDao.swift; sourceTree = "<group>"; };
 		E7DE030323D35A4200B78423 /* getSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getSize.swift; sourceTree = "<group>"; };
+		E7EFAE7323D46B2E00838A18 /* KRProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KRProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7EFAE7723D46B3200838A18 /* KRActivityIndicatorView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KRActivityIndicatorView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7EFAE7A23D46B3900838A18 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7EFAE7D23D46B3E00838A18 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,9 +90,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7DE02F623D215E800B78423 /* Realm.framework in Frameworks */,
+				E7EFAE7B23D46B3900838A18 /* SwiftyJSON.framework in Frameworks */,
+				E7EFAE7823D46B3200838A18 /* KRActivityIndicatorView.framework in Frameworks */,
+				E7EFAE7423D46B2E00838A18 /* KRProgressHUD.framework in Frameworks */,
+				E7EFAE7E23D46B3E00838A18 /* Alamofire.framework in Frameworks */,
 				0E0C87C2466EB3508B52390E /* Pods_SearchAccountOfGitHub.framework in Frameworks */,
-				E7DE02FA23D215EE00B78423 /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +120,10 @@
 		9BBD0B8D71786A5CD1C77F0D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E7EFAE7D23D46B3E00838A18 /* Alamofire.framework */,
+				E7EFAE7A23D46B3900838A18 /* SwiftyJSON.framework */,
+				E7EFAE7723D46B3200838A18 /* KRActivityIndicatorView.framework */,
+				E7EFAE7323D46B2E00838A18 /* KRProgressHUD.framework */,
 				E7DE02F923D215EE00B78423 /* RealmSwift.framework */,
 				E7DE02F523D215E800B78423 /* Realm.framework */,
 				87DECFE2FD6EAA2B4F97F0AC /* Pods_SearchAccountOfGitHub.framework */,

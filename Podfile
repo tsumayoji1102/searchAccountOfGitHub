@@ -6,7 +6,9 @@ target 'SearchAccountOfGitHub' do
   use_frameworks!
 
   # Pods for SearchAccountOfGitHub
-  pod 'RealmSwift', '~> 3.20.0'
+  pod 'KRProgressHUD'
+  pod 'SwiftyJSON'
+  pod 'Alamofire'
 
   target 'SearchAccountOfGitHubTests' do
     inherit! :search_paths
