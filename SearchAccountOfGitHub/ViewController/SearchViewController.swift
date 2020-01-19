@@ -67,7 +67,7 @@ class SearchViewController: UITableViewController {
         if(accountList == nil || accountList.count == 0){
             
             // 実験台
-            let label = UILabel.init(frame: CGRect.init(x: 10, y: 25, width: 100, height:20))
+            let label = UILabel.init(frame: CGRect.init(x: 30, y: 25, width: 100, height:20))
             label.text = "Hello World"
             
             // 貼り付けて返す
