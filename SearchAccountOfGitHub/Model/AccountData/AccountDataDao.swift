@@ -7,30 +7,11 @@
 //
 
 import UIKit
-import Alamofire
 
 class AccountDataDao: NSObject {
     
     override init() {
         super.init()
-    }
-  
-     
-    // 検索メソッド
-    func searchAccount(word: String) -> Array<AccountData>{
-        
-        // stringのURL
-        let urlString = "https://api.github.com/search/users?q=\(word)"
-        print(urlString)
-        
-        let headers: HTTPHeaders = ["Content-Type": "application/json"]
-        
-        
-        
-    }
-    
-    func getResult(){
-        
     }
 
 }

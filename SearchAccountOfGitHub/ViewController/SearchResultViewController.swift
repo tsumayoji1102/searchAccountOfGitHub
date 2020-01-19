@@ -8,7 +8,6 @@
 
 import UIKit
 import WebKit
-import KRProgressHUD
 
 class SearchResultViewController: UIViewController {
     
@@ -17,21 +16,11 @@ class SearchResultViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        KRProgressHUD.show()
-        
-        // 画面サイズ取得
+       
         let screenSize = getSize.getUsefulSize()
         
-        // View用CGRect
-        let screenSizeForView = CGRect.init(
-            x: 0,
-            y:      screenSize["statusBarHeight"]!,
-            width:  screenSize["screenWidth"]!,
-            height: screenSize["screenHeight"]!
-                  - screenSize["statusBarHeight"]!)
+        let screenSizeForView = CGRect.init(x: 0, y: screenSize["statusBarHeight"]!, width: screenSize["screenWidth"]!, height: screenSize["screenHeight"]! - screenSize["statusBarHeight"]!)
         
-        // webKit生成
         let webView = WKWebView.init(frame: screenSizeForView)
         
         view.addSubview(webView)
@@ -42,14 +31,10 @@ class SearchResultViewController: UIViewController {
         webView.load(URLRequest(url: url!))
      
         resultNavi.title = "結果"
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        KRProgressHUD.dismiss()
     }
     
     
-}
 
+
+}
 

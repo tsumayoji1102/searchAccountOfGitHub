@@ -26,9 +26,6 @@
 		E7DE030023D2E36D00B78423 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DE02FF23D2E36D00B78423 /* AccountData.swift */; };
 		E7DE030223D3517900B78423 /* AccountDataDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DE030123D3517900B78423 /* AccountDataDao.swift */; };
 		E7DE030423D35A4200B78423 /* getSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DE030323D35A4200B78423 /* getSize.swift */; };
-		E7DE030A23D367C100B78423 /* KRProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DE030923D367C100B78423 /* KRProgressHUD.framework */; };
-		E7DE030E23D367C700B78423 /* KRActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DE030D23D367C700B78423 /* KRActivityIndicatorView.framework */; };
-		E7EFAE7023D45B1300838A18 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EFAE6F23D45B1300838A18 /* Alamofire.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,10 +77,6 @@
 		E7DE02FF23D2E36D00B78423 /* AccountData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountData.swift; sourceTree = "<group>"; };
 		E7DE030123D3517900B78423 /* AccountDataDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDataDao.swift; sourceTree = "<group>"; };
 		E7DE030323D35A4200B78423 /* getSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getSize.swift; sourceTree = "<group>"; };
-		E7DE030523D3648200B78423 /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7DE030923D367C100B78423 /* KRProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KRProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7DE030D23D367C700B78423 /* KRActivityIndicatorView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KRActivityIndicatorView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7EFAE6F23D45B1300838A18 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,11 +85,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7DE02F623D215E800B78423 /* Realm.framework in Frameworks */,
-				E7EFAE7023D45B1300838A18 /* Alamofire.framework in Frameworks */,
 				0E0C87C2466EB3508B52390E /* Pods_SearchAccountOfGitHub.framework in Frameworks */,
-				E7DE030A23D367C100B78423 /* KRProgressHUD.framework in Frameworks */,
 				E7DE02FA23D215EE00B78423 /* RealmSwift.framework in Frameworks */,
-				E7DE030E23D367C700B78423 /* KRActivityIndicatorView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,10 +112,6 @@
 		9BBD0B8D71786A5CD1C77F0D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E7EFAE6F23D45B1300838A18 /* Alamofire.framework */,
-				E7DE030D23D367C700B78423 /* KRActivityIndicatorView.framework */,
-				E7DE030923D367C100B78423 /* KRProgressHUD.framework */,
-				E7DE030523D3648200B78423 /* SVProgressHUD.framework */,
 				E7DE02F923D215EE00B78423 /* RealmSwift.framework */,
 				E7DE02F523D215E800B78423 /* Realm.framework */,
 				87DECFE2FD6EAA2B4F97F0AC /* Pods_SearchAccountOfGitHub.framework */,
