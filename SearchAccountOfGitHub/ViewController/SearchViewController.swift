@@ -14,7 +14,7 @@ class SearchViewController: UITableViewController {
     @IBOutlet weak var rootNavi: UINavigationItem!
     
     // 検索結果
-    var accountList: Array<AccountData>!
+    var accountList: Array<Account>!
     
     
     // MARK: - ライフサイクル
@@ -76,14 +76,14 @@ class SearchViewController: UITableViewController {
         // 一旦Hello World
         }else{
             
-            let accountData = accountList[indexPath.row]
+            let account = accountList[indexPath.row]
             
             //let image = UIImage
             let nameLabel = UILabel.init(frame: CGRect.init(x: 60, y: 10, width: 100, height: 15))
-            nameLabel.text = accountData.getAccountName()
+            nameLabel.text = account.login
             
             let typeLabel = UILabel.init(frame: CGRect.init(x: 60, y: 25, width: 100, height: 15))
-            typeLabel.text = accountData.getAccountType()
+            typeLabel.text = account.type
             
             cell.addSubview(nameLabel)
             cell.addSubview(typeLabel)
