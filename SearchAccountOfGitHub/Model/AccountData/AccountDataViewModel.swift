@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AcountDataViewModel: NSObject {
+class AccountDataViewModel: NSObject {
     
     let accountDataDao: AccountDataDao = AccountDataDao.init()
     
@@ -16,14 +16,17 @@ class AcountDataViewModel: NSObject {
         super.init()
     }
     
-    // 検索
+    // 検索結果を返す
     func searchAccount(word: String) -> Array<Account>!{
         
         // 返す配列
         var list = Array<Account>()
         
+        // gitHubAPI
+        let url = "https://api.github.com/search/users?q=\(word)"
+        
         // データ取得
-        let accountData = accountDataDao.getApiInfo(word: word)
+        let accountData = accountDataDao.getAccountData(urlString: url)
         
         let max = accountData!.total_count
         

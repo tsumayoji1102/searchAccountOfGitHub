@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KRProgressHUD
 
 class SearchViewController: UITableViewController {
 
@@ -16,6 +17,12 @@ class SearchViewController: UITableViewController {
     // 検索結果
     var accountList: Array<Account>!
     
+    // viewModel
+    let viewModel = AccountDataViewModel.init()
+    
+    // viewパーツ
+    var searchBar: UISearchTextField!
+    
     
     // MARK: - ライフサイクル
     
@@ -23,6 +30,12 @@ class SearchViewController: UITableViewController {
         super.viewDidLoad()
         
         rootNavi.title = "アカウント検索"
+        
+        // 検索欄
+        searchBar = UISearchTextField.init(frame: CGRect.init(x: 0, y: 0, width: getSize.getUsefulSize()["screenWidth"]! * 4 / 5, height: 40))
+        searchBar.delegate = self
+        searchBar.placeholder = "アカウントを検索"
+        searchBar.keyboardType = .emailAddress
 
         
     }
@@ -33,8 +46,6 @@ class SearchViewController: UITableViewController {
     // ヘッダー内容
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        // 検索欄
-        let searchBar = UISearchBar.init()
         return searchBar
     }
     
@@ -73,19 +84,18 @@ class SearchViewController: UITableViewController {
             // 貼り付けて返す
             cell.addSubview(label)
         
-        // 一旦Hello World
         }else{
             
             let account = accountList[indexPath.row]
             
             //let image = UIImage
-            let nameLabel = UILabel.init(frame: CGRect.init(x: 60, y: 10, width: 100, height: 15))
-            nameLabel.text = account.login
+            let loginLabel  = UILabel.init(frame: CGRect.init(x: 60, y: 10, width: 100, height: 15))
+            loginLabel.text = account.login
             
-            let typeLabel = UILabel.init(frame: CGRect.init(x: 60, y: 25, width: 100, height: 15))
+            let typeLabel  = UILabel.init(frame: CGRect.init(x: 60, y: 25, width: 100, height: 15))
             typeLabel.text = account.type
             
-            cell.addSubview(nameLabel)
+            cell.addSubview(loginLabel)
             cell.addSubview(typeLabel)
             
         }
@@ -103,9 +113,37 @@ class SearchViewController: UITableViewController {
     // 画面遷移(タップ時)
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let navigationController = self.storyboard!.instantiateViewController(withIdentifier: "SearchResultViewController")
+        let navigationController = self.storyboard!.instantiateViewController(withIdentifier: "SearchResultViewController") as! SearchResultViewController
+        
+        // 検索結果がないならGoogleにとばす
+        if(accountList == nil){
+            navigationController.resultUrl = "https://google.co.jp"
+            
+        }else{
+            navigationController.resultUrl = accountList[indexPath.row].html_url
+        }
         
         self.show(navigationController, sender: nil)
     }
+    
 
 }
+
+
+// MARK: - TextField系メソッド
+extension SearchViewController: UITextFieldDelegate, UISearchTextFieldDelegate{
+    
+     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        
+        KRProgressHUD.show()
+        
+        self.accountList = viewModel.searchAccount(word: textField.text!)
+        self.tableView.reloadData()
+        
+        KRProgressHUD.dismiss()
+        return true
+    }
+}
+    

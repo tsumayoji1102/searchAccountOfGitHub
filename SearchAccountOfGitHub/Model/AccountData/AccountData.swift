@@ -7,7 +7,7 @@
 //
 
 /*
- * JSONDecoderでインスタンスを作る
+ * JSONDecoderでインスタンスを作るためのもの
  *
 */
 import Foundation

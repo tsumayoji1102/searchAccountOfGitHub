@@ -12,7 +12,11 @@ import KRProgressHUD
 
 class SearchResultViewController: UIViewController {
     
+    // @IBoutlet
     @IBOutlet weak var resultNavi: UINavigationItem!
+    
+    // 値
+    var resultUrl: String!
     
     
     override func viewDidLoad() {
@@ -27,7 +31,7 @@ class SearchResultViewController: UIViewController {
         view.addSubview(webView)
         
         // テスト用URL
-        let url = URL(string: "https://google.co.jp")
+        let url = URL(string: resultUrl)
         
         webView.load(URLRequest(url: url!))
      

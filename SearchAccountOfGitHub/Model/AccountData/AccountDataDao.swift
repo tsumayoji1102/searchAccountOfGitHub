@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 
 class AccountDataDao: NSObject {
     
@@ -18,49 +19,44 @@ class AccountDataDao: NSObject {
     }
     
     
-    // APIから取得するメソッド
-    func getApiInfo(word: String) -> AccountData!{
+    
+    // データを取得する
+    func getAccountData(urlString: String) -> AccountData!{
+        // アカウントデータ
+        var accountData: AccountData!
         
-        // stringのURL
-        let urlString = "https://api.github.com/search/users"
-        print(urlString)
-        // URL化
-        let url = URL(string: urlString)
-        // コンポーネントの作成
-        guard var components = URLComponents(url: url!, resolvingAgainstBaseURL: url?.baseURL != nil) else {
-            return self.accountData
+        // components作成
+        guard let url = URLComponents(string: urlString) else {
+            return nil
         }
         
-        // クエリを指定（q = 検索ワード)
-        components.queryItems = [URLQueryItem(name: "q", value: word)] + (components.queryItems ?? [])
-        
-        // request生成
-        var request = URLRequest(url: components.url!)
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "GET"
-        
-        // JSONを拾う作業
-        let task = URLSession.shared.dataTask(with: request, completionHandler: {(data, response, error) in
-            // Errorがあるなら終了
-            if let error = error{
-                print("セッションエラー:\(error)")
+        // task実行
+        let task = URLSession.shared.dataTask(with: url.url!){
+            (data, response, error) in
+            // Errorで停止
+            if(error != nil){
+                print("Error:" + error!.localizedDescription)
                 return
             }
-            // データがなくても終了
-            guard let data = data else{
+            // Dataなしで停止
+            guard let _data = data else{
                 return
             }
-            // JSONDecoder使う
+            // JSONデコード
             do{
-                self.accountData = try JSONDecoder().decode(AccountData.self, from: data)
-            }catch {
-                print("JSONDecoderエラー")
+                accountData = try JSONDecoder().decode(AccountData.self, from: _data)
+                
+                for item in accountData.items{
+                    print("login: \(item.login) type: \(item.type) html_url: \(item.html_url)")
+                }
+                
+            }catch{
+                print("デコードエラー")
             }
-        })
-        // 終了
+        }
         task.resume()
         
-        return self.accountData
+        return accountData
         
     }
 

@@ -25,10 +25,8 @@
 		E7DE030423D35A4200B78423 /* getSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DE030323D35A4200B78423 /* getSize.swift */; };
 		E7EFAE7423D46B2E00838A18 /* KRProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EFAE7323D46B2E00838A18 /* KRProgressHUD.framework */; };
 		E7EFAE7823D46B3200838A18 /* KRActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EFAE7723D46B3200838A18 /* KRActivityIndicatorView.framework */; };
-		E7EFAE7B23D46B3900838A18 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EFAE7A23D46B3900838A18 /* SwiftyJSON.framework */; };
-		E7EFAE7E23D46B3E00838A18 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EFAE7D23D46B3E00838A18 /* Alamofire.framework */; };
 		E7EFAE8123D4AA7100838A18 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EFAE8023D4AA7100838A18 /* AccountData.swift */; };
-		E7EFAE8323D4C4FA00838A18 /* AcountDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EFAE8223D4C4FA00838A18 /* AcountDataViewModel.swift */; };
+		E7EFAE8323D4C4FA00838A18 /* AccountDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EFAE8223D4C4FA00838A18 /* AccountDataViewModel.swift */; };
 		E7EFAE8523D4C61500838A18 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EFAE8423D4C61500838A18 /* Account.swift */; };
 /* End PBXBuildFile section */
 
@@ -85,7 +83,7 @@
 		E7EFAE7A23D46B3900838A18 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7EFAE7D23D46B3E00838A18 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7EFAE8023D4AA7100838A18 /* AccountData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountData.swift; sourceTree = "<group>"; };
-		E7EFAE8223D4C4FA00838A18 /* AcountDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AcountDataViewModel.swift; path = SearchAccountOfGitHub/Model/AccountData/AcountDataViewModel.swift; sourceTree = SOURCE_ROOT; };
+		E7EFAE8223D4C4FA00838A18 /* AccountDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountDataViewModel.swift; path = SearchAccountOfGitHub/Model/AccountData/AccountDataViewModel.swift; sourceTree = SOURCE_ROOT; };
 		E7EFAE8423D4C61500838A18 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,10 +92,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7EFAE7B23D46B3900838A18 /* SwiftyJSON.framework in Frameworks */,
 				E7EFAE7823D46B3200838A18 /* KRActivityIndicatorView.framework in Frameworks */,
 				E7EFAE7423D46B2E00838A18 /* KRProgressHUD.framework in Frameworks */,
-				E7EFAE7E23D46B3E00838A18 /* Alamofire.framework in Frameworks */,
 				0E0C87C2466EB3508B52390E /* Pods_SearchAccountOfGitHub.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,7 +225,7 @@
 		E7DB90A123D1FF5100A61EDF /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				E7EFAE8223D4C4FA00838A18 /* AcountDataViewModel.swift */,
+				E7EFAE8223D4C4FA00838A18 /* AccountDataViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -469,7 +465,7 @@
 				E7DB90A323D201F200A61EDF /* SearchViewController.swift in Sources */,
 				E7D8701523D1FC1C00B4C333 /* SearchResultViewController.swift in Sources */,
 				E7D8701B23D1FC1C00B4C333 /* SearchAccountOfGitHub.xcdatamodeld in Sources */,
-				E7EFAE8323D4C4FA00838A18 /* AcountDataViewModel.swift in Sources */,
+				E7EFAE8323D4C4FA00838A18 /* AccountDataViewModel.swift in Sources */,
 				E7DE030423D35A4200B78423 /* getSize.swift in Sources */,
 				E7D8701123D1FC1C00B4C333 /* AppDelegate.swift in Sources */,
 				E7DE030223D3517900B78423 /* AccountDataDao.swift in Sources */,
