@@ -27,7 +27,6 @@
 		E7EFAE7823D46B3200838A18 /* KRActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EFAE7723D46B3200838A18 /* KRActivityIndicatorView.framework */; };
 		E7EFAE8123D4AA7100838A18 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EFAE8023D4AA7100838A18 /* AccountData.swift */; };
 		E7EFAE8323D4C4FA00838A18 /* AccountDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EFAE8223D4C4FA00838A18 /* AccountDataViewModel.swift */; };
-		E7EFAE8523D4C61500838A18 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EFAE8423D4C61500838A18 /* Account.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +83,6 @@
 		E7EFAE7D23D46B3E00838A18 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7EFAE8023D4AA7100838A18 /* AccountData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountData.swift; sourceTree = "<group>"; };
 		E7EFAE8223D4C4FA00838A18 /* AccountDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountDataViewModel.swift; path = SearchAccountOfGitHub/Model/AccountData/AccountDataViewModel.swift; sourceTree = SOURCE_ROOT; };
-		E7EFAE8423D4C61500838A18 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,7 +233,6 @@
 			children = (
 				E7DE030123D3517900B78423 /* AccountDataDao.swift */,
 				E7EFAE8023D4AA7100838A18 /* AccountData.swift */,
-				E7EFAE8423D4C61500838A18 /* Account.swift */,
 			);
 			path = AccountData;
 			sourceTree = "<group>";
@@ -470,7 +467,6 @@
 				E7D8701123D1FC1C00B4C333 /* AppDelegate.swift in Sources */,
 				E7DE030223D3517900B78423 /* AccountDataDao.swift in Sources */,
 				E7D8701323D1FC1C00B4C333 /* SceneDelegate.swift in Sources */,
-				E7EFAE8523D4C61500838A18 /* Account.swift in Sources */,
 				E7EFAE8123D4AA7100838A18 /* AccountData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

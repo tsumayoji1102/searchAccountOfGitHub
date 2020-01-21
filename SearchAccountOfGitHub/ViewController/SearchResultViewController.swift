@@ -35,7 +35,6 @@ class SearchResultViewController: UIViewController {
         
         webView.load(URLRequest(url: url!))
      
-        resultNavi.title = "結果"
     }
     
     

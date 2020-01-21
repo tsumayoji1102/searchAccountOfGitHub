@@ -15,13 +15,14 @@ class SearchViewController: UITableViewController {
     @IBOutlet weak var rootNavi: UINavigationItem!
     
     // 検索結果
-    var accountList: Array<Account>!
+    var accountData: AccountData!
     
     // viewModel
     let viewModel = AccountDataViewModel.init()
     
     // viewパーツ
-    var searchBar: UISearchTextField!
+    var searchBar:     UISearchTextField!
+    var searchBarView: UIView!
     
     
     // MARK: - ライフサイクル
@@ -31,12 +32,19 @@ class SearchViewController: UITableViewController {
         
         rootNavi.title = "アカウント検索"
         
+        let cgrect = CGRect.init(x: 0, y: 0, width: getSize.getUsefulSize()["screenWidth"]!, height: 40)
+        
         // 検索欄
-        searchBar = UISearchTextField.init(frame: CGRect.init(x: 0, y: 0, width: getSize.getUsefulSize()["screenWidth"]! * 4 / 5, height: 40))
+        searchBar = UISearchTextField.init(frame: cgrect)
         searchBar.delegate = self
         searchBar.placeholder = "アカウントを検索"
         searchBar.keyboardType = .emailAddress
-
+        
+        
+        searchBarView = UIView.init(frame: cgrect)
+        searchBarView.backgroundColor = UIColor.init(red: 255, green: 255, blue: 255, alpha: 1)
+        searchBarView.addSubview(searchBar)
+        
         
     }
     
@@ -45,7 +53,7 @@ class SearchViewController: UITableViewController {
     // ヘッダー内容
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        return searchBar
+        return searchBarView
     }
     
     // ヘッダーの高さ
@@ -58,11 +66,11 @@ class SearchViewController: UITableViewController {
     // セル数
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if(accountList == nil || accountList.count == 0){
+        if(accountData == nil || accountData.items.count == 0){
             return 1
             
         }else{
-            return accountList.count
+            return accountData.items.count
         }
         
     }
@@ -74,7 +82,7 @@ class SearchViewController: UITableViewController {
         // セル生成
         let cell = UITableViewCell.init()
         
-        if(accountList == nil || accountList.count == 0){
+        if(accountData == nil || accountData.items.count == 0){
             
             // 実験台
             let label = UILabel.init(frame: CGRect.init(x: 10, y: 25, width: 100, height:20))
@@ -85,18 +93,23 @@ class SearchViewController: UITableViewController {
         
         }else{
             
-            let account = accountList[indexPath.row]
+            let account = accountData.items[indexPath.row]
             
-            let image: UIImage = viewModel.getImageByUrl(url: account.avatar_url)
+            // imageViewの作成
+            let image: UIImage = viewModel.getImageByUrl(url: account.avatar_url, x: 10, y: 20)
+            let imageView = UIImageView.init(frame: CGRect.init(x: 20, y: 10, width: 50, height: 50))
+            imageView.image = image
             
-            
-            let loginLabel  = UILabel.init(frame: CGRect.init(x: 60, y: 10, width: 100, height: 15))
+            // アカウント名のラベル
+            let loginLabel  = UILabel.init(frame: CGRect.init(x: 100, y: 10, width: 200, height: 18))
             loginLabel.text = account.login
             
-            let typeLabel  = UILabel.init(frame: CGRect.init(x: 60, y: 25, width: 100, height: 15))
+            // タイプのラベル
+            let typeLabel  = UILabel.init(frame: CGRect.init(x: 100, y: 40, width: 150, height: 18))
             typeLabel.text = account.type
             
-            //cell.addSubview(image)
+            // セルに貼り付け
+            cell.addSubview(imageView)
             cell.addSubview(loginLabel)
             cell.addSubview(typeLabel)
             
@@ -117,12 +130,16 @@ class SearchViewController: UITableViewController {
         
         let navigationController = self.storyboard!.instantiateViewController(withIdentifier: "SearchResultViewController") as! SearchResultViewController
         
-        // 検索結果がないならGoogleにとばす
-        if(accountList == nil){
+        // 検索結果がないならGoogleにとばす(Hello World)
+        if(accountData == nil || accountData.items.count == 0){
             navigationController.resultUrl = "https://google.co.jp"
             
         }else{
-            navigationController.resultUrl = accountList[indexPath.row].html_url
+            // URL, ナビタイトルを紐づける
+            navigationController.resultUrl = accountData.items[indexPath.row].html_url
+            
+            navigationController.resultNavi.title =
+                accountData.items[indexPath.row].login
         }
         
         self.show(navigationController, sender: nil)
@@ -141,18 +158,32 @@ extension SearchViewController: UITextFieldDelegate, UISearchTextFieldDelegate{
         
         KRProgressHUD.show()
         
-        // gitHubAPI
-        let url: String = "https://api.github.com/search/users?q=\(textField.text!)"
-        
         // データ取得
-        viewModel.accountDataDao.getAccountDataFromAPI(urlString: url, completion: {(accountList) in
+        viewModel.searchAccount(word: textField.text!, completion: {
             
-            self.accountList = accountList
+            (accountData) in
             
-            DispatchQueue.main.async(execute: {
-                self.tableView.reloadData()
+            if(accountData != nil){
+                self.accountData = accountData
+                
+                DispatchQueue.main.async(execute: {
+                    self.tableView.reloadData()
+                    KRProgressHUD.dismiss()
+                })
+            }else{
                 KRProgressHUD.dismiss()
-            })
+                let alert = UIAlertController(title: "結果なし", message: "検索結果がないか、エラーが発生しました", preferredStyle: UIAlertController.Style.alert)
+                
+                let OKAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
+                    
+                    (action: UIAlertAction!) -> Void in
+                    print("OK")
+                })
+                
+                alert.addAction(OKAction)
+                self.present(alert, animated: true, completion: nil)
+            }
+            
         })
         
         return true

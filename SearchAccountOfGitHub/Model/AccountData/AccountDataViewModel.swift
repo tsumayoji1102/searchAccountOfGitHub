@@ -11,14 +11,15 @@ import UIKit
 class AccountDataViewModel: NSObject {
     
     let accountDataDao: AccountDataDao = AccountDataDao.init()
-    var accountList: Array<Account>!
     
     override init(){
         super.init()
     }
     
-    // 検索結果を返す
-    func searchAccount(word: String){
+    
+    // APIの検索結果を返す
+    func searchAccount(word: String, completion: @escaping (AccountData?) -> Swift.Void){
+        
         
         // gitHubAPI
         let url: String = "https://api.github.com/search/users?q=\(word)"
@@ -26,19 +27,27 @@ class AccountDataViewModel: NSObject {
         // データ取得
         accountDataDao.getAccountDataFromAPI(urlString: url, completion: {(accountList) in
             
-            self.accountList = accountList
+            completion(accountList!)
         })
         
     }
     
     
     // 画像をURLから取得
-    func getImageByUrl(url: String) -> UIImage{
+    func getImageByUrl(url: String, x: CGFloat, y: CGFloat) -> UIImage!{
         
         let url = URL(string: url)
         do {
             let data = try Data(contentsOf: url!)
-            return UIImage(data: data)!
+            let image = UIImage(data: data)!
+            let size = CGSize(width: 50, height: 50)
+            UIGraphicsBeginImageContext(size)
+            image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+            let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            return resizedImage
+            
         } catch let err {
             print("Error : \(err.localizedDescription)")
         }
