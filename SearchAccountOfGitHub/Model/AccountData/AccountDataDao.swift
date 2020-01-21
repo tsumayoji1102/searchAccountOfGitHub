@@ -8,11 +8,11 @@
 
 import UIKit
 import WebKit
+import Alamofire
 
 class AccountDataDao: NSObject {
     
-    // AccountData
-    var accountData: AccountData!
+    private var accountData: AccountData!
     
     override init() {
         super.init()
@@ -20,44 +20,57 @@ class AccountDataDao: NSObject {
     
     
     
-    // データを取得する
-    func getAccountData(urlString: String) -> AccountData!{
-        // アカウントデータ
-        var accountData: AccountData!
+    // データを取得する(非同期処理)
+    func getAccountDataFromAPI(urlString: String, completion: @escaping (Array<Account>) -> Swift.Void){
         
-        // components作成
-        guard let url = URLComponents(string: urlString) else {
-            return nil
-        }
+        // URL型に変換
+        let url = URL(string: urlString)!
         
-        // task実行
-        let task = URLSession.shared.dataTask(with: url.url!){
+        // request生成
+        let request = URLRequest(url: url)
+        
+        let task = URLSession.shared.dataTask(with: request){
             (data, response, error) in
-            // Errorで停止
-            if(error != nil){
-                print("Error:" + error!.localizedDescription)
+            
+            // データがないなら処理終了
+            guard let data = data else{
+                print("データなし")
                 return
             }
-            // Dataなしで停止
-            guard let _data = data else{
-                return
-            }
-            // JSONデコード
+            
             do{
-                accountData = try JSONDecoder().decode(AccountData.self, from: _data)
+                let jsonData = try JSONDecoder().decode(AccountData.self, from: data)
+                print(jsonData)
                 
-                for item in accountData.items{
-                    print("login: \(item.login) type: \(item.type) html_url: \(item.html_url)")
+                var list = Array<Account>()
+                
+                for item in jsonData.items {
+                    let account = Account.init(
+                        login:      item.login,
+                        type:       item.type,
+                        html_url:   item.html_url,
+                        avatar_url: item.avatar_url)
+                    
+                    list.append(account)
                 }
                 
-            }catch{
-                print("デコードエラー")
+                completion(list)
+                
+            }catch let e{
+                print("デコードエラー: \(e)")
+                
             }
+            
         }
+        // 実行
         task.resume()
         
-        return accountData
-        
+    }
+    
+    
+    // データ取得(非同期）
+    func getAccountData() -> AccountData!{
+        return self.accountData
     }
 
 }

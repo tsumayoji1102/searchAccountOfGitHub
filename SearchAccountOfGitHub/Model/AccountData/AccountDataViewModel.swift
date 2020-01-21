@@ -11,38 +11,38 @@ import UIKit
 class AccountDataViewModel: NSObject {
     
     let accountDataDao: AccountDataDao = AccountDataDao.init()
+    var accountList: Array<Account>!
     
     override init(){
         super.init()
     }
     
     // 検索結果を返す
-    func searchAccount(word: String) -> Array<Account>!{
-        
-        // 返す配列
-        var list = Array<Account>()
+    func searchAccount(word: String){
         
         // gitHubAPI
-        let url = "https://api.github.com/search/users?q=\(word)"
+        let url: String = "https://api.github.com/search/users?q=\(word)"
         
         // データ取得
-        let accountData = accountDataDao.getAccountData(urlString: url)
+        accountDataDao.getAccountDataFromAPI(urlString: url, completion: {(accountList) in
+            
+            self.accountList = accountList
+        })
         
-        let max = accountData!.total_count
+    }
+    
+    
+    // 画像をURLから取得
+    func getImageByUrl(url: String) -> UIImage{
         
-        // データ格納
-        for i in 0 ..< max {
-            let item = accountData?.items[i]
-            let account = Account.init(
-                login:      item!.login,
-                type:       item!.type,
-                html_url:   item!.html_url,
-                avatar_url: item!.avatar_url
-            )
-            list.append(account)
+        let url = URL(string: url)
+        do {
+            let data = try Data(contentsOf: url!)
+            return UIImage(data: data)!
+        } catch let err {
+            print("Error : \(err.localizedDescription)")
         }
-        
-        return list
+        return UIImage()
     }
 
 }

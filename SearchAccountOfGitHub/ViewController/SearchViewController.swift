@@ -40,7 +40,6 @@ class SearchViewController: UITableViewController {
         
     }
     
-    
     // MARK: - TableView系メソッド
     
     // ヘッダー内容
@@ -88,13 +87,16 @@ class SearchViewController: UITableViewController {
             
             let account = accountList[indexPath.row]
             
-            //let image = UIImage
+            let image: UIImage = viewModel.getImageByUrl(url: account.avatar_url)
+            
+            
             let loginLabel  = UILabel.init(frame: CGRect.init(x: 60, y: 10, width: 100, height: 15))
             loginLabel.text = account.login
             
             let typeLabel  = UILabel.init(frame: CGRect.init(x: 60, y: 25, width: 100, height: 15))
             typeLabel.text = account.type
             
+            //cell.addSubview(image)
             cell.addSubview(loginLabel)
             cell.addSubview(typeLabel)
             
@@ -139,10 +141,20 @@ extension SearchViewController: UITextFieldDelegate, UISearchTextFieldDelegate{
         
         KRProgressHUD.show()
         
-        self.accountList = viewModel.searchAccount(word: textField.text!)
-        self.tableView.reloadData()
+        // gitHubAPI
+        let url: String = "https://api.github.com/search/users?q=\(textField.text!)"
         
-        KRProgressHUD.dismiss()
+        // データ取得
+        viewModel.accountDataDao.getAccountDataFromAPI(urlString: url, completion: {(accountList) in
+            
+            self.accountList = accountList
+            
+            DispatchQueue.main.async(execute: {
+                self.tableView.reloadData()
+                KRProgressHUD.dismiss()
+            })
+        })
+        
         return true
     }
 }
