@@ -24,7 +24,11 @@ class SearchResultViewController: UIViewController {
        
         let screenSize = getSize.getUsefulSize()
         
-        let screenSizeForView = CGRect.init(x: 0, y: screenSize["statusBarHeight"]!, width: screenSize["screenWidth"]!, height: screenSize["screenHeight"]! - screenSize["statusBarHeight"]!)
+        let screenSizeForView = CGRect.init(
+            x:      0,
+            y:      screenSize["statusBarHeight"]!,
+            width:  screenSize["screenWidth"]!,
+            height: screenSize["screenHeight"]! - screenSize["statusBarHeight"]!)
         
         let webView = WKWebView.init(frame: screenSizeForView)
         
@@ -36,7 +40,6 @@ class SearchResultViewController: UIViewController {
         webView.load(URLRequest(url: url!))
      
     }
-    
     
     
     override func viewWillAppear(_ animated: Bool) {

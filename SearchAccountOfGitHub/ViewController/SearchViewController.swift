@@ -38,7 +38,7 @@ class SearchViewController: UITableViewController {
         searchBar = UISearchTextField.init(frame: cgrect)
         searchBar.delegate = self
         searchBar.placeholder = "アカウントを検索"
-        searchBar.keyboardType = .emailAddress
+        searchBar.keyboardType = .alphabet
         
         
         searchBarView = UIView.init(frame: cgrect)
@@ -47,6 +47,22 @@ class SearchViewController: UITableViewController {
         
         
     }
+    
+    // MARK: - 通常メソッド
+    
+    func alertViewOK(title: String, message: String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        
+        let OKAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
+            
+            (action: UIAlertAction!) -> Void in
+            print("OK")
+        })
+        
+        alert.addAction(OKAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     
     // MARK: - TableView系メソッド
     
@@ -96,7 +112,7 @@ class SearchViewController: UITableViewController {
             let account = accountData.items[indexPath.row]
             
             // imageViewの作成
-            let image: UIImage = viewModel.getImageByUrl(url: account.avatar_url, x: 10, y: 20)
+            let image: UIImage = viewModel.getImageByUrl(url: account.avatar_url)
             let imageView = UIImageView.init(frame: CGRect.init(x: 20, y: 10, width: 50, height: 50))
             imageView.image = image
             
@@ -158,6 +174,12 @@ extension SearchViewController: UITextFieldDelegate, UISearchTextFieldDelegate{
         
         KRProgressHUD.show()
         
+        if(textField.text! == ""){
+            KRProgressHUD.dismiss()
+            alertViewOK(title: "注意", message: "検索ワードを入力してください。")
+            return false
+        }
+        
         // データ取得
         viewModel.searchAccount(word: textField.text!, completion: {
             
@@ -172,16 +194,7 @@ extension SearchViewController: UITextFieldDelegate, UISearchTextFieldDelegate{
                 })
             }else{
                 KRProgressHUD.dismiss()
-                let alert = UIAlertController(title: "結果なし", message: "検索結果がないか、エラーが発生しました", preferredStyle: UIAlertController.Style.alert)
-                
-                let OKAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
-                    
-                    (action: UIAlertAction!) -> Void in
-                    print("OK")
-                })
-                
-                alert.addAction(OKAction)
-                self.present(alert, animated: true, completion: nil)
+                self.alertViewOK(title: "エラー", message: "検索結果がないか、エラーが発生しました。")
             }
             
         })

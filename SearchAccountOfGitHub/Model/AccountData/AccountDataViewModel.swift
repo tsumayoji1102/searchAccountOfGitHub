@@ -20,9 +20,11 @@ class AccountDataViewModel: NSObject {
     // APIの検索結果を返す
     func searchAccount(word: String, completion: @escaping (AccountData?) -> Swift.Void){
         
+        // エンコード
+        let encoding = word.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         
         // gitHubAPI
-        let url: String = "https://api.github.com/search/users?q=\(word)"
+        let url: String = "https://api.github.com/search/users?q=\(encoding)"
         
         // データ取得
         accountDataDao.getAccountDataFromAPI(urlString: url, completion: {(accountList) in
@@ -34,13 +36,16 @@ class AccountDataViewModel: NSObject {
     
     
     // 画像をURLから取得
-    func getImageByUrl(url: String, x: CGFloat, y: CGFloat) -> UIImage!{
+    func getImageByUrl(url: String) -> UIImage!{
         
         let url = URL(string: url)
         do {
-            let data = try Data(contentsOf: url!)
+            // 画像を取得
+            let data  = try Data(contentsOf: url!)
             let image = UIImage(data: data)!
-            let size = CGSize(width: 50, height: 50)
+            let size  = CGSize(width: 50, height: 50)
+            
+            // 画像サイズを最適化
             UIGraphicsBeginImageContext(size)
             image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
             let resizedImage = UIGraphicsGetImageFromCurrentImageContext()

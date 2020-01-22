@@ -22,7 +22,6 @@ class AccountDataDao: NSObject {
         guard let url = URL(string: urlString) else{
             return
         }
-        
         // request生成
         let request = URLRequest(url: url)
         
@@ -47,13 +46,11 @@ class AccountDataDao: NSObject {
             }catch let e{
                 print("デコードエラー: \(e)")
                 completion(nil)
-                
             }
             
         }
         // 実行
         task.resume()
-        
     }
 
 }
