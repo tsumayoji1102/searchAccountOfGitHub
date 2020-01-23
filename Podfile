@@ -7,8 +7,6 @@ target 'SearchAccountOfGitHub' do
 
   # Pods for SearchAccountOfGitHub
   pod 'KRProgressHUD'
-  pod 'SwiftyJSON'
-  pod 'Alamofire'
 
   target 'SearchAccountOfGitHubTests' do
     inherit! :search_paths

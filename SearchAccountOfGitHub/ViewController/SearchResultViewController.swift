@@ -12,7 +12,11 @@ import KRProgressHUD
 
 class SearchResultViewController: UIViewController {
     
+    // @IBoutlet
     @IBOutlet weak var resultNavi: UINavigationItem!
+    
+    // 値
+    var resultUrl: String!
     
     
     override func viewDidLoad() {
@@ -20,20 +24,22 @@ class SearchResultViewController: UIViewController {
        
         let screenSize = getSize.getUsefulSize()
         
-        let screenSizeForView = CGRect.init(x: 0, y: screenSize["statusBarHeight"]!, width: screenSize["screenWidth"]!, height: screenSize["screenHeight"]! - screenSize["statusBarHeight"]!)
+        let screenSizeForView = CGRect.init(
+            x:      0,
+            y:      screenSize["statusBarHeight"]!,
+            width:  screenSize["screenWidth"]!,
+            height: screenSize["screenHeight"]! - screenSize["statusBarHeight"]!)
         
         let webView = WKWebView.init(frame: screenSizeForView)
         
         view.addSubview(webView)
         
         // テスト用URL
-        let url = URL(string: "https://google.co.jp")
+        let url = URL(string: resultUrl)
         
         webView.load(URLRequest(url: url!))
      
-        resultNavi.title = "結果"
     }
-    
     
     
     override func viewWillAppear(_ animated: Bool) {
