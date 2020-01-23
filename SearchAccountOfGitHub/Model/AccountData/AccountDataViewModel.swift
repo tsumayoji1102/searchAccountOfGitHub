@@ -25,6 +25,7 @@ class AccountDataViewModel: NSObject {
         
         // gitHubAPI
         let url: String = "https://api.github.com/search/users?q=\(encoding)"
+        print(url)
         
         // データ取得
         accountDataDao.getAccountDataFromAPI(urlString: url, completion: {(accountList) in

@@ -82,13 +82,12 @@ class SearchViewController: UITableViewController {
     // セル数
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if(accountData == nil || accountData.items.count == 0){
-            return 1
-            
-        }else{
+        if(accountData != nil){
             return accountData.items.count
         }
         
+        return 0
+
     }
     
     
@@ -97,40 +96,27 @@ class SearchViewController: UITableViewController {
         
         // セル生成
         let cell = UITableViewCell.init()
-        
-        if(accountData == nil || accountData.items.count == 0){
+    
+        let account = accountData.items[indexPath.row]
             
-            // 実験台
-            let label = UILabel.init(frame: CGRect.init(x: 10, y: 25, width: 100, height:20))
-            label.text = "Hello World"
+        // imageViewの作成
+        let image: UIImage = viewModel.getImageByUrl(url: account.avatar_url)
+        let imageView = UIImageView.init(frame: CGRect.init(x: 20, y: 10, width: 50, height: 50))
+        imageView.image = image
             
-            // 貼り付けて返す
-            cell.addSubview(label)
-        
-        }else{
+        // アカウント名のラベル
+        let loginLabel  = UILabel.init(frame: CGRect.init(x: 100, y: 10, width: 200, height: 18))
+        loginLabel.text = account.login
             
-            let account = accountData.items[indexPath.row]
+        // タイプのラベル
+        let typeLabel  = UILabel.init(frame: CGRect.init(x: 100, y: 40, width: 150, height: 18))
+        typeLabel.text = account.type
             
-            // imageViewの作成
-            let image: UIImage = viewModel.getImageByUrl(url: account.avatar_url)
-            let imageView = UIImageView.init(frame: CGRect.init(x: 20, y: 10, width: 50, height: 50))
-            imageView.image = image
-            
-            // アカウント名のラベル
-            let loginLabel  = UILabel.init(frame: CGRect.init(x: 100, y: 10, width: 200, height: 18))
-            loginLabel.text = account.login
-            
-            // タイプのラベル
-            let typeLabel  = UILabel.init(frame: CGRect.init(x: 100, y: 40, width: 150, height: 18))
-            typeLabel.text = account.type
-            
-            // セルに貼り付け
-            cell.addSubview(imageView)
-            cell.addSubview(loginLabel)
-            cell.addSubview(typeLabel)
-            
-        }
-        
+        // セルに貼り付け
+        cell.addSubview(imageView)
+        cell.addSubview(loginLabel)
+        cell.addSubview(typeLabel)
+    
         return cell
     }
     
@@ -146,17 +132,9 @@ class SearchViewController: UITableViewController {
         
         let navigationController = self.storyboard!.instantiateViewController(withIdentifier: "SearchResultViewController") as! SearchResultViewController
         
-        // 検索結果がないならGoogleにとばす(Hello World)
-        if(accountData == nil || accountData.items.count == 0){
-            navigationController.resultUrl = "https://google.co.jp"
-            
-        }else{
-            // URL, ナビタイトルを紐づける
-            navigationController.resultUrl = accountData.items[indexPath.row].html_url
-            
-            navigationController.resultNavi.title =
-                accountData.items[indexPath.row].login
-        }
+        // URL, ナビタイトルを紐づける
+        navigationController.resultUrl        = accountData.items[indexPath.row].html_url
+        navigationController.resultNavi.title = accountData.items[indexPath.row].login
         
         self.show(navigationController, sender: nil)
     }
@@ -178,6 +156,12 @@ extension SearchViewController: UITextFieldDelegate, UISearchTextFieldDelegate{
             KRProgressHUD.dismiss()
             alertViewOK(title: "注意", message: "検索ワードを入力してください。")
             return false
+            
+        }else if(textField.text!.contains(Character.init(" ")) || textField.text!.contains(Character.init("　"))){
+            alertViewOK(title: "注意", message: "空白を使用せずに入力してください。")
+            KRProgressHUD.dismiss()
+            return false
+            
         }
         
         // データ取得
