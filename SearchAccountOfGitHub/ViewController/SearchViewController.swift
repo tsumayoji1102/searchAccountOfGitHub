@@ -40,7 +40,7 @@ class SearchViewController: UITableViewController {
         searchBar.placeholder = "アカウントを検索"
         searchBar.keyboardType = .alphabet
         
-        
+        // 透明になるのを防ぐ
         searchBarView = UIView.init(frame: cgrect)
         searchBarView.backgroundColor = UIColor.init(red: 255, green: 255, blue: 255, alpha: 1)
         searchBarView.addSubview(searchBar)
@@ -50,7 +50,10 @@ class SearchViewController: UITableViewController {
     
     // MARK: - 通常メソッド
     
+    
+    // OKの出るアラート
     func alertViewOK(title: String, message: String){
+        
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         
         let OKAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
@@ -95,7 +98,7 @@ class SearchViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // セル生成
-        let cell = UITableViewCell.init()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "rootViewTable", for: indexPath)
     
         let account = accountData.items[indexPath.row]
             
